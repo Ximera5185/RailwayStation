@@ -11,8 +11,6 @@ namespace RailwayStation
         static void Main(string [] args)
         {
              RailwayStation railwayStation = new RailwayStation();
-
-            
         }
     }
 }

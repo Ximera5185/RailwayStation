@@ -9,6 +9,7 @@ namespace RailwayStation
     internal class RailwayStation
     {
         private TravelDirections _travelDirection = new TravelDirections();
+        private Train _train = new Train();
 
         public RailwayStation()
         {
@@ -23,6 +24,7 @@ namespace RailwayStation
         private void StartMenu()
         {
             const string _createTravelDirectionMenu = "1";
+            const string _createCarriage = "2";
             const string _exitProgramMenu = "5";
 
             bool isWorckProgram = true;
@@ -37,6 +39,7 @@ namespace RailwayStation
 
                 Console.WriteLine();
                 Console.WriteLine($"Для создания направления введите {_createTravelDirectionMenu}\n" +
+                $"Для создания вакона {_createCarriage}" +
                 $"Для выхода из программы введите - {_exitProgramMenu}");
 
                 inputUserCommand = Console.ReadLine();
@@ -45,6 +48,10 @@ namespace RailwayStation
                 {
                     case _createTravelDirectionMenu:
                         _travelDirection.CreateTravelDirection();
+                        break;
+
+                    case _createCarriage:
+                        _train.FormTrain();
                         break;
 
                     case _exitProgramMenu:
