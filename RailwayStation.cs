@@ -25,6 +25,8 @@ namespace RailwayStation
 
             bool isWorckProgram = true;
 
+            TravelDirections travelDirections;
+
             string inputUserCommand ;
 
             while (isWorckProgram)
@@ -48,6 +50,9 @@ namespace RailwayStation
             }
         }
 
-        private void StatusStantion() { }
+        private void StatusStantion() 
+        {
+            
+        }
     }
 }
