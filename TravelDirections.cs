@@ -5,14 +5,13 @@ namespace RailwayStation
 {
     internal class TravelDirections
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
 
         private readonly List<string> _startTravelDirections = new List<string>();
         private readonly List<string> _endTravelDirections = new List<string>();
 
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
-
 
         public TravelDirections()
         {
@@ -27,6 +26,15 @@ namespace RailwayStation
             StartTravelDirection = _startTravelDirections [_random.Next(minValue, maxValueStartDirection)];
 
             EndTravelDirection = _endTravelDirections [_random.Next(minValue, maxValueEndDirection)];
+        }
+
+        public void ShowTravelDirection()
+        {
+            if (_startTravelDirections.Count > 0 || _endTravelDirections.Count > 0)
+            {
+                Console.WriteLine($"Создано направлене {StartTravelDirection} - {EndTravelDirection}");
+            }
+            else { Console.WriteLine("Направление не создано"); }
         }
 
         private void AddCitiesStartTravelDirection()

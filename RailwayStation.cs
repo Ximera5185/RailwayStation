@@ -8,12 +8,11 @@ namespace RailwayStation
 {
     internal class RailwayStation
     {
-
-        private readonly TravelDirections _travelDirections = new TravelDirections();
         public RailwayStation()
         {
             StartStantion();
         }
+
         public void StartStantion()
         {
             StartMenu();
@@ -25,7 +24,8 @@ namespace RailwayStation
             const string _exitProgramMenu = "5";
 
             bool isWorckProgram = true;
-            string inputUserCommand = "";
+
+            string inputUserCommand ;
 
             while (isWorckProgram)
             {
@@ -39,7 +39,6 @@ namespace RailwayStation
                 switch (inputUserCommand)
                 {
                     case _createTravelDirectionMenu:
-                        StartMenu();
                         break;
 
                     case _exitProgramMenu:
@@ -48,15 +47,7 @@ namespace RailwayStation
                 }
             }
         }
-        private void ShowTravelDirection()
-        {
-            Console.WriteLine($"Создано направлене {_travelDirections.StartTravelDirection}\n" +
-            $"Конкчная станция {_travelDirections.EndTravelDirection}");
-        }
 
-        private void StatusStantion()
-        {
-            ShowTravelDirection();
-        }
+        private void StatusStantion() { }
     }
 }
