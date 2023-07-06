@@ -8,6 +8,8 @@ namespace RailwayStation
 {
     internal class RailwayStation
     {
+        private TravelDirections _travelDirection = new TravelDirections();
+
         public RailwayStation()
         {
             StartStantion();
@@ -25,14 +27,15 @@ namespace RailwayStation
 
             bool isWorckProgram = true;
 
-            TravelDirections travelDirections;
-
-            string inputUserCommand ;
+            string inputUserCommand;
 
             while (isWorckProgram)
             {
+                Console.Clear();
+
                 StatusStantion();
 
+                Console.WriteLine();
                 Console.WriteLine($"Для создания направления введите {_createTravelDirectionMenu}\n" +
                 $"Для выхода из программы введите - {_exitProgramMenu}");
 
@@ -41,6 +44,7 @@ namespace RailwayStation
                 switch (inputUserCommand)
                 {
                     case _createTravelDirectionMenu:
+                        _travelDirection.CreateTravelDirection();
                         break;
 
                     case _exitProgramMenu:
@@ -50,9 +54,10 @@ namespace RailwayStation
             }
         }
 
-        private void StatusStantion() 
+        private void StatusStantion()
         {
-            
+            Console.WriteLine("Статус станции : ");
+            _travelDirection.ShowTravelDirection();
         }
     }
 }

@@ -12,8 +12,8 @@ namespace RailwayStation
 
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
-
-        public TravelDirections()
+     
+        public void CreateTravelDirection() 
         {
             AddCitiesStartTravelDirection();
 
