@@ -12,8 +12,8 @@ namespace RailwayStation
 
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
-     
-        public void CreateTravelDirection() 
+
+        public void CreateTravelDirection()
         {
             AddCitiesStartTravelDirection();
 
@@ -34,7 +34,10 @@ namespace RailwayStation
             {
                 Console.WriteLine($"Создано направлене {StartTravelDirection} - {EndTravelDirection}");
             }
-            else { Console.WriteLine("Направление не создано"); }
+            else
+            {
+                Console.WriteLine("Направление не создано");
+            }
         }
 
         private void AddCitiesStartTravelDirection()

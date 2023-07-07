@@ -16,6 +16,7 @@ namespace RailwayStation
             StartStantion();
         }
 
+        private int Tickets { get; set; }
         public void StartStantion()
         {
             StartMenu();
@@ -24,7 +25,8 @@ namespace RailwayStation
         private void StartMenu()
         {
             const string _createTravelDirectionMenu = "1";
-            const string _createCarriage = "2";
+            const string _sellTicketsMenu = "2"; 
+            const string _createCarriage = "3";
             const string _exitProgramMenu = "5";
 
             bool isWorckProgram = true;
@@ -39,7 +41,8 @@ namespace RailwayStation
 
                 Console.WriteLine();
                 Console.WriteLine($"Для создания направления введите {_createTravelDirectionMenu}\n" +
-                $"Для создания вакона {_createCarriage}" +
+                $"Для продажи белетов введите - {_sellTicketsMenu}\n" +
+                $"Для формирования состава введите - {_createCarriage}\n" +
                 $"Для выхода из программы введите - {_exitProgramMenu}");
 
                 inputUserCommand = Console.ReadLine();
@@ -48,6 +51,10 @@ namespace RailwayStation
                 {
                     case _createTravelDirectionMenu:
                         _travelDirection.CreateTravelDirection();
+                        break;
+
+                    case _sellTicketsMenu:
+                        SellTickets();
                         break;
 
                     case _createCarriage:
@@ -61,9 +68,31 @@ namespace RailwayStation
             }
         }
 
+        private void SellTickets() 
+        {
+            Random random = new Random();
+
+            int minValue = 9;
+            int maxValue = 99;
+
+            Tickets = random.Next( minValue, maxValue );
+        }
+
+        private void ShowTicketsSatus() 
+        {
+            if (Tickets == 0)
+            {
+                Console.WriteLine("Билеты не проданы");
+            }
+            else
+            {
+                Console.WriteLine($"Колличество проданных билетов - {Tickets}");
+            }
+        }
         private void StatusStantion()
         {
             Console.WriteLine("Статус станции : ");
+            ShowTicketsSatus();
             _travelDirection.ShowTravelDirection();
         }
     }
