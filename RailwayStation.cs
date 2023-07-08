@@ -58,7 +58,7 @@ namespace RailwayStation
                         break;
 
                     case _createCarriage:
-                        _train.FormTrain();
+                        _train.FormTrain(Tickets);
                         break;
 
                     case _exitProgramMenu:
@@ -75,7 +75,16 @@ namespace RailwayStation
             int minValue = 9;
             int maxValue = 99;
 
-            Tickets = random.Next( minValue, maxValue );
+            if (_travelDirection.StartTravelDirection == null || _travelDirection.EndTravelDirection == null)
+            {
+                Console.Clear();
+                Console.WriteLine("Для продажи билетов создайте направление");
+                Console.ReadKey();
+            }
+            else
+            {
+                Tickets = random.Next( minValue, maxValue );
+            }
         }
 
         private void ShowTicketsSatus() 
@@ -94,6 +103,7 @@ namespace RailwayStation
             Console.WriteLine("Статус станции : ");
             ShowTicketsSatus();
             _travelDirection.ShowTravelDirection();
+            _train.ShowTrain(Tickets);
         }
     }
 }
