@@ -121,6 +121,7 @@ namespace RailwayStation
 
             _travelDirections.Add(travelDirection);
         }
+
         private void SellTickets()
         {
             Random random = new Random();
@@ -166,6 +167,7 @@ namespace RailwayStation
                 Console.WriteLine($"Колличество проданных билетов - {Tickets}");
             }
         }
+
         private void StatusStantion()
         {
             Console.WriteLine("Статус станции : ");

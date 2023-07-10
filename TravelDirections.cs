@@ -7,14 +7,12 @@ namespace RailwayStation
     {
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
-        public int StartCoordinate { get; set; }
-        public int FinalCoordinate { get; set; }
         public int Distance { get; private set; }
         public TravelDirections(string startTravelDirectiun, string endTravelDirection) 
         {
             StartTravelDirection = startTravelDirectiun;
-            EndTravelDirection = endTravelDirection;
 
+            EndTravelDirection = endTravelDirection;
         }
 
         public void CalculateDistance( Dictionary<int,string> coordinates) 
