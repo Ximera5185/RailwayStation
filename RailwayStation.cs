@@ -28,6 +28,20 @@ namespace RailwayStation
             {5,"Грозный"}
         };
 
+        private readonly Dictionary<int, string> _coordinates = new Dictionary<int, string>()
+        {
+            {100,"Иркутск"},
+            {200,"Ангарск"},
+            {300,"Усолье-Сибирское"},
+            {400,"Тайшет"},
+            {500,"Братск"},
+            {600,"Ростов"},
+            {700,"Киринск"},
+            {800,"Москва"},
+            {900,"Анапа"},
+            {1000,"Грозный"}
+        };
+
         private Train _train = new Train();
 
         private int Tickets { get; set; }
@@ -103,6 +117,8 @@ namespace RailwayStation
 
             TravelDirections travelDirection = new TravelDirections(_startTravelDirections[inputUserStartPoint],_endTravelDirections[inputUserEndPoint]);
 
+            travelDirection.CalculateDistance(_coordinates);
+
             _travelDirections.Add(travelDirection);
         }
         private void SellTickets()
@@ -130,7 +146,7 @@ namespace RailwayStation
             {
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
-                    Console.WriteLine($"Созданные направления : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection}");
+                    Console.WriteLine($"Созданные направления : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км");
                 }
             }
             else
