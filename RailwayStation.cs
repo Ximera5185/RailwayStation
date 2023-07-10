@@ -57,7 +57,7 @@ namespace RailwayStation
 
             string inputUserCommand;
 
-            while (isWorckProgram)
+            /*while (isWorckProgram)
             {
                 Console.Clear();
 
@@ -89,7 +89,7 @@ namespace RailwayStation
                         isWorckProgram = false;
                         break;
                 }
-            }
+            }*/
         }
 
         private void CreateTravelDirection() 
