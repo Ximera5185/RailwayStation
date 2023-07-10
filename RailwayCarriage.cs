@@ -19,5 +19,7 @@ namespace RailwayStation
         }
 
         public int NumberOfPassengerSeats { get; private set; }
+
+        public int Mileage { get; set; }
     }
 }
