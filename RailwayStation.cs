@@ -83,25 +83,25 @@ namespace RailwayStation
             int inputUserStartPoint;
             int inputUserEndPoint;
 
-            Console.WriteLine("Введите номер стартовой точеи");
+            Console.WriteLine("Введите номер стартовой точки");
 
-            foreach (var item in _startTravelDirections)
+            foreach (KeyValuePair<int,string> startTravelDirection in _startTravelDirections)
             {
-                Console.WriteLine($"key: {_startTravelDirections.Count}  value: {_startTravelDirections.Values}");
+                Console.WriteLine($"key: {startTravelDirection.Key} {startTravelDirection.Value}");
             }
 
             inputUserStartPoint = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Введите номер конечной точеи");
+            Console.WriteLine("Введите номер конечной точки");
 
-            foreach (var item in _endTravelDirections)
+            foreach (KeyValuePair<int,string> endTravelDirection in _endTravelDirections)
             {
-                Console.WriteLine($"key: {_endTravelDirections.Count}  value: {_endTravelDirections.Values}");
+                Console.WriteLine($"key: {endTravelDirection.Key} {endTravelDirection.Value}");
             }
 
             inputUserEndPoint = Convert.ToInt32(Console.ReadLine());
 
-            TravelDirections travelDirection = new TravelDirections(_endTravelDirections[inputUserEndPoint],_endTravelDirections[inputUserEndPoint]);
+            TravelDirections travelDirection = new TravelDirections(_startTravelDirections[inputUserStartPoint],_endTravelDirections[inputUserEndPoint]);
 
             _travelDirections.Add(travelDirection);
         }
@@ -124,6 +124,21 @@ namespace RailwayStation
             }
         }
 
+        public void ShowTravelDirection()
+        {
+            if (_travelDirections != null)
+            {
+                foreach (TravelDirections travelDirection in _travelDirections)
+                {
+                    Console.WriteLine($"Созданные направления : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Направление не создано");
+            }
+        }
+
         private void ShowTicketsSatus()
         {
             if (Tickets == 0)
@@ -139,7 +154,7 @@ namespace RailwayStation
         {
             Console.WriteLine("Статус станции : ");
             ShowTicketsSatus();
-            _travelDirection.ShowTravelDirection();
+            ShowTravelDirection();
             _train.ShowTrain(Tickets);
         }
     }
