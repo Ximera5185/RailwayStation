@@ -8,7 +8,26 @@ namespace RailwayStation
 {
     internal class RailwayStation
     {
-        private TravelDirections _travelDirection = new TravelDirections();
+        private List<TravelDirections> _travelDirections = new List<TravelDirections>();
+
+        private readonly Dictionary<int,string> _startTravelDirections = new Dictionary<int, string>() 
+        {
+            {1,"Иркутск"},
+            {2,"Ангарск"},
+            {3,"Усолье-Сибирское"},
+            {4,"Тайшет"},
+            {5,"Братск"}
+        };
+        
+        private readonly Dictionary<int,string> _endTravelDirections = new Dictionary<int, string>() 
+        {
+            {1,"Ростов"},
+            {2,"Киринск"},
+            {3,"Москва"},
+            {4,"Анапа"},
+            {5,"Грозный"}
+        };
+
         private Train _train = new Train();
 
         private int Tickets { get; set; }
@@ -41,7 +60,7 @@ namespace RailwayStation
                 switch (inputUserCommand)
                 {
                     case CreateTravelDirectionMenu:
-                        _travelDirection.CreateTravelDirection();
+                        CreateTravelDirection();
                         break;
 
                     case SellTicketsMenu:
@@ -59,6 +78,33 @@ namespace RailwayStation
             }
         }
 
+        private void CreateTravelDirection() 
+        {
+            int inputUserStartPoint;
+            int inputUserEndPoint;
+
+            Console.WriteLine("Введите номер стартовой точеи");
+
+            foreach (var item in _startTravelDirections)
+            {
+                Console.WriteLine($"key: {_startTravelDirections.Count}  value: {_startTravelDirections.Values}");
+            }
+
+            inputUserStartPoint = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Введите номер конечной точеи");
+
+            foreach (var item in _endTravelDirections)
+            {
+                Console.WriteLine($"key: {_endTravelDirections.Count}  value: {_endTravelDirections.Values}");
+            }
+
+            inputUserEndPoint = Convert.ToInt32(Console.ReadLine());
+
+            TravelDirections travelDirection = new TravelDirections(_endTravelDirections[inputUserEndPoint],_endTravelDirections[inputUserEndPoint]);
+
+            _travelDirections.Add(travelDirection);
+        }
         private void SellTickets()
         {
             Random random = new Random();
@@ -66,7 +112,7 @@ namespace RailwayStation
             int minValue = 9;
             int maxValue = 99;
 
-            if (_travelDirection.StartTravelDirection == null || _travelDirection.EndTravelDirection == null)
+            if (_travelDirections == null)
             {
                 Console.Clear();
                 Console.WriteLine("Для продажи билетов создайте направление");
