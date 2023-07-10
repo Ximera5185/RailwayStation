@@ -141,7 +141,7 @@ namespace RailwayStation
             }
         }
 
-        public void ShowTravelDirection()
+        private void ShowTravelDirection()
         {
             if (_travelDirections != null)
             {
