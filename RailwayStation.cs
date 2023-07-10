@@ -11,23 +11,14 @@ namespace RailwayStation
         private TravelDirections _travelDirection = new TravelDirections();
         private Train _train = new Train();
 
-        public RailwayStation()
-        {
-            StartStantion();
-        }
-
         private int Tickets { get; set; }
-        public void StartStantion()
-        {
-            StartMenu();
-        }
 
-        private void StartMenu()
+        public void Work()
         {
-            const string _createTravelDirectionMenu = "1";
-            const string _sellTicketsMenu = "2"; 
-            const string _createCarriage = "3";
-            const string _exitProgramMenu = "5";
+            const string CreateTravelDirectionMenu = "1";
+            const string SellTicketsMenu = "2";
+            const string CreateCarriage = "3";
+            const string ExitProgramMenu = "5";
 
             bool isWorckProgram = true;
 
@@ -40,35 +31,35 @@ namespace RailwayStation
                 StatusStantion();
 
                 Console.WriteLine();
-                Console.WriteLine($"Для создания направления введите {_createTravelDirectionMenu}\n" +
-                $"Для продажи белетов введите - {_sellTicketsMenu}\n" +
-                $"Для формирования состава введите - {_createCarriage}\n" +
-                $"Для выхода из программы введите - {_exitProgramMenu}");
+                Console.WriteLine($"Для создания направления введите {CreateTravelDirectionMenu}\n" +
+                $"Для продажи белетов введите - {SellTicketsMenu}\n" +
+                $"Для формирования состава введите - {CreateCarriage}\n" +
+                $"Для выхода из программы введите - {ExitProgramMenu}");
 
                 inputUserCommand = Console.ReadLine();
 
                 switch (inputUserCommand)
                 {
-                    case _createTravelDirectionMenu:
+                    case CreateTravelDirectionMenu:
                         _travelDirection.CreateTravelDirection();
                         break;
 
-                    case _sellTicketsMenu:
+                    case SellTicketsMenu:
                         SellTickets();
                         break;
 
-                    case _createCarriage:
+                    case CreateCarriage:
                         _train.FormTrain(Tickets);
                         break;
 
-                    case _exitProgramMenu:
+                    case ExitProgramMenu:
                         isWorckProgram = false;
                         break;
                 }
             }
         }
 
-        private void SellTickets() 
+        private void SellTickets()
         {
             Random random = new Random();
 
@@ -83,11 +74,11 @@ namespace RailwayStation
             }
             else
             {
-                Tickets = random.Next( minValue, maxValue );
+                Tickets = random.Next(minValue, maxValue);
             }
         }
 
-        private void ShowTicketsSatus() 
+        private void ShowTicketsSatus()
         {
             if (Tickets == 0)
             {

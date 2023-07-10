@@ -10,7 +10,10 @@ namespace RailwayStation
     {
         static void Main(string [] args)
         {
-             RailwayStation railwayStation = new RailwayStation();
+            RailwayStation railwayStation = new RailwayStation();
+
+            railwayStation.Work();
+
             Console.WriteLine();
         }
     }

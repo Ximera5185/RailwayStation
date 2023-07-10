@@ -13,6 +13,17 @@ namespace RailwayStation
 
         private int _freeSpace;
         public int NumberSeatTrain { get; private set; }
+        public void ShowTrain(int tickets) 
+        {
+            _freeSpace = NumberSeatTrain - tickets;
+
+            Console.WriteLine($"Вагонов создано {_carriages.Count}\n" +
+            $"Свего поссажирских мест в поезде {NumberSeatTrain}\n" +
+            $"Мест занято {tickets}\n" +
+            $"Свободных мест в поезде {_freeSpace}");
+
+        }
+
         public void FormTrain(int tickets)
         {
             if (tickets <= 0) 
@@ -30,16 +41,6 @@ namespace RailwayStation
             }
         }
 
-        public void ShowTrain(int tickets) 
-        {
-            _freeSpace = NumberSeatTrain - tickets;
-
-            Console.WriteLine($"Вагонов создано {_carriages.Count}\n" +
-            $"Свего поссажирских мест в поезде {NumberSeatTrain}\n" +
-            $"Мест занято {tickets}\n" +
-            $"Свободных мест в поезде {_freeSpace}");
-
-        }
         private void CreateCarriage() 
         {
             RailwayCarriage railwayCarriage = new RailwayCarriage();
