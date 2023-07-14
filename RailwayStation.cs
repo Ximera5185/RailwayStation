@@ -8,9 +8,14 @@ namespace RailwayStation
 {
     internal class RailwayStation
     {
+        const string CreateTravelDirectionMenu = "1";
+        const string SellTicketsMenu = "2";
+        const string CreateCarriage = "3";
+        const string ExitProgramMenu = "5";
+
         private List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
-        private readonly Dictionary<int,string> _startTravelDirections = new Dictionary<int, string>() 
+        private readonly Dictionary<int, string> _startTravelDirections = new Dictionary<int, string>()
         {
             {1,"Иркутск"},
             {2,"Ангарск"},
@@ -18,8 +23,8 @@ namespace RailwayStation
             {4,"Тайшет"},
             {5,"Братск"}
         };
-        
-        private readonly Dictionary<int,string> _endTravelDirections = new Dictionary<int, string>() 
+
+        private readonly Dictionary<int, string> _endTravelDirections = new Dictionary<int, string>()
         {
             {1,"Ростов"},
             {2,"Киринск"},
@@ -46,16 +51,12 @@ namespace RailwayStation
 
         private int Tickets { get; set; }
 
+            string inputUserCommand;
+            bool isWorckProgram = true;
         public void Work()
         {
-            const string CreateTravelDirectionMenu = "1";
-            const string SellTicketsMenu = "2";
-            const string CreateCarriage = "3";
-            const string ExitProgramMenu = "5";
 
-            bool isWorckProgram = true;
 
-            string inputUserCommand;
 
             while (isWorckProgram)
             {
@@ -65,8 +66,7 @@ namespace RailwayStation
 
                 Console.WriteLine();
                 Console.WriteLine($"Для создания направления введите {CreateTravelDirectionMenu}\n" +
-                $"Для продажи белетов введите - {SellTicketsMenu}\n" +
-                $"Для формирования состава введите - {CreateCarriage}\n" +
+
                 $"Для выхода из программы введите - {ExitProgramMenu}");
 
                 inputUserCommand = Console.ReadLine();
@@ -92,14 +92,14 @@ namespace RailwayStation
             }
         }
 
-        private void CreateTravelDirection() 
+        private void CreateTravelDirection()
         {
             int inputUserStartPoint;
             int inputUserEndPoint;
 
             Console.WriteLine("Введите номер стартовой точки");
 
-            foreach (KeyValuePair<int,string> startTravelDirection in _startTravelDirections)
+            foreach (KeyValuePair<int, string> startTravelDirection in _startTravelDirections)
             {
                 Console.WriteLine($"key: {startTravelDirection.Key} {startTravelDirection.Value}");
             }
@@ -108,18 +108,34 @@ namespace RailwayStation
 
             Console.WriteLine("Введите номер конечной точки");
 
-            foreach (KeyValuePair<int,string> endTravelDirection in _endTravelDirections)
+            foreach (KeyValuePair<int, string> endTravelDirection in _endTravelDirections)
             {
                 Console.WriteLine($"key: {endTravelDirection.Key} {endTravelDirection.Value}");
             }
 
             inputUserEndPoint = Convert.ToInt32(Console.ReadLine());
 
-            TravelDirections travelDirection = new TravelDirections(_startTravelDirections[inputUserStartPoint],_endTravelDirections[inputUserEndPoint]);
+            TravelDirections travelDirection = new TravelDirections(_startTravelDirections [inputUserStartPoint], _endTravelDirections [inputUserEndPoint]);
 
             travelDirection.CalculateDistance(_coordinates);
 
             _travelDirections.Add(travelDirection);
+
+            Console.WriteLine($"Для продажи белетов введите - {SellTicketsMenu}\n" +
+            $"Для выхода из программы введите - {ExitProgramMenu}");
+
+            inputUserCommand = Console.ReadLine();
+
+            switch (inputUserCommand)
+            {
+                case SellTicketsMenu:
+                    SellTickets();
+                    break;
+                case ExitProgramMenu:
+                    isWorckProgram = false;
+                    break;
+            }
+
         }
 
         private void SellTickets()
@@ -139,7 +155,9 @@ namespace RailwayStation
             {
                 Tickets = random.Next(minValue, maxValue);
             }
+            Console.WriteLine($"Для формирования состава введите - {CreateCarriage}");  
         }
+
 
         private void ShowTravelDirection()
         {
