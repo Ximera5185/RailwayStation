@@ -8,7 +8,7 @@ namespace RailwayStation
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
         public int Distance { get; private set; }
-        public int Tickets { get;  set; },
+        public int Tickets { get;  set; }
         public TravelDirections(string startTravelDirectiun, string endTravelDirection) 
         {
             StartTravelDirection = startTravelDirectiun;
