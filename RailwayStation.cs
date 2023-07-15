@@ -13,7 +13,6 @@ namespace RailwayStation
         const string CreateCarriage = "3";
         const string ExitProgramMenu = "5";
 
-        private List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
         private readonly Dictionary<int, string> _startTravelDirections = new Dictionary<int, string>()
         {
@@ -47,12 +46,14 @@ namespace RailwayStation
             {1000,"Грозный"}
         };
 
+        private List<TravelDirections> _travelDirections = new List<TravelDirections>();
+
         private Train _train = new Train();
 
-        private int Tickets { get; set; }
+        public int Tickets { get; private set; }
 
-            string inputUserCommand;
-            bool isWorckProgram = true;
+        string inputUserCommand;
+        bool isWorckProgram = true;
         public void Work()
         {
 
@@ -97,6 +98,8 @@ namespace RailwayStation
             int inputUserStartPoint;
             int inputUserEndPoint;
 
+            Console.Clear();
+
             Console.WriteLine("Введите номер стартовой точки");
 
             foreach (KeyValuePair<int, string> startTravelDirection in _startTravelDirections)
@@ -121,6 +124,7 @@ namespace RailwayStation
 
             _travelDirections.Add(travelDirection);
 
+            Console.Clear();
             Console.WriteLine($"Для продажи белетов введите - {SellTicketsMenu}\n" +
             $"Для выхода из программы введите - {ExitProgramMenu}");
 
@@ -154,8 +158,15 @@ namespace RailwayStation
             else
             {
                 Tickets = random.Next(minValue, maxValue);
+
+                _travelDirections [_travelDirections.Count - 1].Tickets += this.Tickets;
             }
-            Console.WriteLine($"Для формирования состава введите - {CreateCarriage}");  
+
+            Console.Clear();
+            Console.WriteLine("Билеты проданы");
+            Console.WriteLine($"Для формирования состава введите - {CreateCarriage}");
+
+            inputUserCommand = Console.ReadLine();
         }
 
 
@@ -165,7 +176,8 @@ namespace RailwayStation
             {
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
-                    Console.WriteLine($"Созданные направления : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км");
+                    Console.WriteLine("Созданные направления");
+                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}");
                 }
             }
             else
@@ -174,7 +186,7 @@ namespace RailwayStation
             }
         }
 
-        private void ShowTicketsSatus()
+        /*private void ShowTicketsSatus()
         {
             if (Tickets == 0)
             {
@@ -184,12 +196,12 @@ namespace RailwayStation
             {
                 Console.WriteLine($"Колличество проданных билетов - {Tickets}");
             }
-        }
+        }*/
 
         private void StatusStantion()
         {
             Console.WriteLine("Статус станции : ");
-            ShowTicketsSatus();
+           /* ShowTicketsSatus();*/
             ShowTravelDirection();
             _train.ShowTrain(Tickets);
         }
