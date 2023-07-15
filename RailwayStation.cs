@@ -169,7 +169,6 @@ namespace RailwayStation
             inputUserCommand = Console.ReadLine();
         }
 
-        =
         private void ShowTravelDirection()
         {
             if (_travelDirections != null)
