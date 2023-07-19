@@ -167,6 +167,13 @@ namespace RailwayStation
             Console.WriteLine($"Для формирования состава введите - {CreateCarriage}");
 
             inputUserCommand = Console.ReadLine();
+
+            switch (inputUserCommand)
+            {
+            case CreateCarriage:
+                    _train.CreateCarriage();
+                    break;
+            }
         }
 
         private void ShowTravelDirection()
@@ -176,7 +183,7 @@ namespace RailwayStation
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
                     Console.WriteLine("Созданные направления");
-                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}");
+                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets} Вагонов в поезде {_train._carriages.}");
                 }
             }
             else
@@ -185,22 +192,9 @@ namespace RailwayStation
             }
         }
 
-        /*private void ShowTicketsSatus()
-        {
-            if (Tickets == 0)
-            {
-                Console.WriteLine("Билеты не проданы");
-            }
-            else
-            {
-                Console.WriteLine($"Колличество проданных билетов - {Tickets}");
-            }
-        }*/
-
         private void StatusStantion()
         {
             Console.WriteLine("Статус станции : ");
-           /* ShowTicketsSatus();*/
             ShowTravelDirection();
             _train.ShowTrain(Tickets);
         }
