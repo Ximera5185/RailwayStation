@@ -37,7 +37,7 @@ namespace RailwayStation
             {
                 while (tickets > NumberSeatTrain)
                 {
-                     int number = 1;
+                     int number = 0;
                     CreateCarriage(number);
                  number++;
                 }
