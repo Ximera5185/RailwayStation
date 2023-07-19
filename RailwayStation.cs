@@ -56,9 +56,6 @@ namespace RailwayStation
         bool isWorckProgram = true;
         public void Work()
         {
-
-
-
             while (isWorckProgram)
             {
                 Console.Clear();
@@ -171,7 +168,7 @@ namespace RailwayStation
             switch (inputUserCommand)
             {
             case CreateCarriage:
-                    _train.CreateCarriage();
+                    _train.FormTrain(Tickets);
                     break;
             }
         }
@@ -183,7 +180,12 @@ namespace RailwayStation
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
                     Console.WriteLine("Созданные направления");
-                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets} Вагонов в поезде {_train._carriages.}");
+                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}  ");
+
+                    foreach (KeyValuePair<int, RailwayCarriage> train in _train._carriages)
+                    {
+                        Console.WriteLine($"Вагонов в поезде {train.Key}");
+                    }
                 }
             }
             else

@@ -37,18 +37,18 @@ namespace RailwayStation
             {
                 while (tickets > NumberSeatTrain)
                 {
-                    CreateCarriage();
+                     int number = 1;
+                    CreateCarriage(number);
+                 number++;
                 }
             }
         }
 
-        public void CreateCarriage() 
+        public void CreateCarriage(int number) 
         {
-            int number = 0;
 
             RailwayCarriage railwayCarriage = new RailwayCarriage();
 
-            number++;
 
             NumberSeatTrain += railwayCarriage.NumberOfPassengerSeats;
 
