@@ -9,39 +9,38 @@ namespace RailwayStation
 {
     internal class Train
     {
-    public Train( int ticcets) 
-    {
+        public Train(int ticcets)
+        {
             FormTrain(ticcets);
-    }  
+
+            EnclosedPlaces = ticcets;
+        }
         public int NumberSeatTrain { get; private set; }
-        private int _freeSpace;
-        public int NumberCarriages { get; set; }
-
-       
-
-        public void FormTrain(int tickets)
+        public int NumberCarriages { get; private set; }
+        public int EnclosedPlaces { get; private set; }
+        private void FormTrain(int tickets)
         {
 
-        NumberCarriages = 0;
+            NumberCarriages = 0;
 
-            if (tickets <= 0) 
+            if (tickets <= 0)
             {
                 Console.Clear();
                 Console.WriteLine("Для формирования состава требуется продать билеты");
                 Console.ReadKey();
             }
-            else 
+            else
             {
-                     
+
                 while (tickets > NumberSeatTrain)
                 {
-                   CreateCarriage();
+                    CreateCarriage();
                 }
             }
 
         }
 
-        public void CreateCarriage() 
+        public void CreateCarriage()
         {
             RailwayCarriage railwayCarriage = new RailwayCarriage();
 
@@ -49,7 +48,6 @@ namespace RailwayStation
 
             NumberCarriages++;
 
-           
         }
 
     }

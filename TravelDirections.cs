@@ -8,41 +8,23 @@ namespace RailwayStation
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
         public int Distance { get; private set; }
-        public int Tickets { get; set; }
 
-        public int NumberCarriage{ get; set; }
-
-        public TravelDirections(string startTravelDirectiun, string endTravelDirection) 
+        public TravelDirections(string startTravelDirectiun, string endTravelDirection, Dictionary<string,int> coordinates) 
         {
             StartTravelDirection = startTravelDirectiun;
 
             EndTravelDirection = endTravelDirection;
 
-       
+            CalculateDistance(coordinates);
         }
 
-        public void CalculateDistance( Dictionary<int,string> coordinates) 
+        public void CalculateDistance( Dictionary<string,int> coordinates) 
         {
-            int startCoordinate = 0;
-            int finalCoordinate = 0;
-
-            foreach (KeyValuePair<int,string> coordinate in coordinates)
-            {
-                if (coordinate.Value == StartTravelDirection)
-                {
-                    startCoordinate = coordinate.Key; 
-                }
-            }
-
-            foreach (KeyValuePair<int, string> coordinate in coordinates)
-            {
-                if (coordinate.Value == EndTravelDirection)
-                {
-                    finalCoordinate = coordinate.Key;
-                }
-            }
+           int startCoordinate = coordinates [StartTravelDirection];
+           int finalCoordinate = coordinates [EndTravelDirection];
 
             Distance = finalCoordinate - startCoordinate;
         }
+
     }
 }

@@ -8,12 +8,6 @@ namespace RailwayStation
 {
     internal class RailwayStation
     {
-        const string CreateTravelDirectionMenu = "1";
-        const string SellTicketsMenu = "2";
-        const string CreateCarriage = "3";
-        const string ExitProgramMenu = "5";
-
-
         private readonly Dictionary<int, string> _startTravelDirections = new Dictionary<int, string>()
         {
             {1,"Иркутск"},
@@ -32,54 +26,46 @@ namespace RailwayStation
             {5,"Грозный"}
         };
 
-        private readonly Dictionary<int, string> _coordinates = new Dictionary<int, string>()
+        private readonly Dictionary<string, int> _coordinates = new Dictionary<string, int>()
         {
-            {100,"Иркутск"},
-            {200,"Ангарск"},
-            {300,"Усолье-Сибирское"},
-            {400,"Тайшет"},
-            {500,"Братск"},
-            {600,"Ростов"},
-            {700,"Киринск"},
-            {800,"Москва"},
-            {900,"Анапа"},
-            {1000,"Грозный"}
+            {"Иркутск",100},
+            {"Ангарск",200},
+            {"Усолье-Сибирское",300},
+            {"Тайшет",400},
+            {"Братск",500},
+            {"Ростов",600},
+            {"Киринск",700},
+            {"Москва",800},
+            {"Анапа",900},
+            {"Грозный",1000}
         };
 
         private List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
         private List<Train> _trains = new List<Train>();
 
-        public int Tickets { get; private set; }
-
-        string inputUserCommand;
-        bool isWorckProgram = true;
         public void Work()
         {
+            const string CreateTravelDirectionMenu = "1";
+            const string ExitProgramMenu = "5";
+
+            bool isWorckProgram = true;
+
             while (isWorckProgram)
             {
                 Console.Clear();
-
-                StatusStantion();
-
+                ShowTravelDirection();
                 Console.WriteLine();
                 Console.WriteLine($"Для создания направления введите {CreateTravelDirectionMenu}\n" +
-
                 $"Для выхода из программы введите - {ExitProgramMenu}");
 
-                inputUserCommand = Console.ReadLine();
+                string inputUserCommand = Console.ReadLine();
 
                 switch (inputUserCommand)
                 {
                     case CreateTravelDirectionMenu:
-                        CreateTravelDirection();
+                        CreateDeparture();
                         break;
-
-                    case SellTicketsMenu:
-                        SellTickets();
-                        break;
-
-                    
 
                     case ExitProgramMenu:
                         isWorckProgram = false;
@@ -88,7 +74,7 @@ namespace RailwayStation
             }
         }
 
-        private void CreateTravelDirection()
+        private void CreateDeparture()
         {
             int inputUserStartPoint;
             int inputUserEndPoint;
@@ -97,43 +83,28 @@ namespace RailwayStation
 
             Console.WriteLine("Введите номер стартовой точки");
 
-            foreach (KeyValuePair<int, string> startTravelDirection in _startTravelDirections)
-            {
-                Console.WriteLine($"key: {startTravelDirection.Key} {startTravelDirection.Value}");
-            }
+            ShowcCities(_startTravelDirections);
 
             inputUserStartPoint = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Введите номер конечной точки");
 
-            foreach (KeyValuePair<int, string> endTravelDirection in _endTravelDirections)
-            {
-                Console.WriteLine($"key: {endTravelDirection.Key} {endTravelDirection.Value}");
-            }
+            ShowcCities(_endTravelDirections);
 
             inputUserEndPoint = Convert.ToInt32(Console.ReadLine());
 
-            TravelDirections travelDirection = new TravelDirections(_startTravelDirections [inputUserStartPoint], _endTravelDirections [inputUserEndPoint]);
+            if (_startTravelDirections.ContainsKey(inputUserStartPoint) && _endTravelDirections.ContainsKey(inputUserEndPoint))
+            {
+                TravelDirections travelDirection = new TravelDirections(_startTravelDirections [inputUserStartPoint], _endTravelDirections [inputUserEndPoint], _coordinates);
 
-            travelDirection.CalculateDistance(_coordinates);
+                _travelDirections.Add(travelDirection);
+                
+                SellTickets();
+            }
 
-            _travelDirections.Add(travelDirection);
 
             Console.Clear();
-            Console.WriteLine($"Для продажи белетов введите - {SellTicketsMenu}\n" +
-            $"Для выхода из программы введите - {ExitProgramMenu}");
 
-            inputUserCommand = Console.ReadLine();
-
-            switch (inputUserCommand)
-            {
-                case SellTicketsMenu:
-                    SellTickets();
-                    break;
-                case ExitProgramMenu:
-                    isWorckProgram = false;
-                    break;
-            }
         }
 
         private void SellTickets()
@@ -142,55 +113,27 @@ namespace RailwayStation
 
             int minValue = 9;
             int maxValue = 99;
+            int tickets;
 
-            if (_travelDirections == null)
-            {
-                Console.Clear();
-                Console.WriteLine("Для продажи билетов создайте направление");
-                Console.ReadKey();
-            }
-            else
-            {
-                Tickets = random.Next(minValue, maxValue);
-
-                _travelDirections [_travelDirections.Count - 1].Tickets += this.Tickets;
-            }
+                tickets = random.Next(minValue, maxValue);
 
             Console.Clear();
             Console.WriteLine("Билеты проданы");
-            Console.WriteLine($"Для формирования состава введите - {CreateCarriage}");
 
-            inputUserCommand = Console.ReadLine();
+            Train train = new Train(tickets);
 
-            switch (inputUserCommand)
-            {
-            case CreateCarriage:
-                    Train train = new Train(Tickets);
-                    _trains.Add(train);
-                    break;
-            }
+            _trains.Add(train);
         }
 
         private void ShowTravelDirection()
         {
-            
+
             if (_travelDirections != null)
             {
-               
-
-                    
-                foreach (TravelDirections travelDirection in _travelDirections)
+                for (int i = 0; i < _travelDirections.Count; i++)
                 {
-                    
-                
-                    Console.WriteLine("Созданные направления");
-                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets} {travelDirection.NumberCarriage} ");  
-                    
-                }
-
-                foreach (Train train in _trains)
-                {
-                    Console.WriteLine($"Колличество вагонов в поезде {train.NumberCarriages}");
+                    Console.WriteLine($"Направление {_travelDirections [i].StartTravelDirection} - {_travelDirections [i].EndTravelDirection} " +
+                    $" Растояние  {_travelDirections [i].Distance} Билетов {_trains [i].EnclosedPlaces} Вогонов создано {_trains [i].NumberCarriages}");
                 }
 
             }
@@ -200,11 +143,12 @@ namespace RailwayStation
             }
         }
 
-        private void StatusStantion()
+        private void ShowcCities(Dictionary<int, string> cities)
         {
-            Console.WriteLine("Статус станции : ");
-            ShowTravelDirection();
-            
+            foreach (KeyValuePair<int, string> city in cities)
+            {
+                Console.WriteLine($"{city.Key} {city.Value}");
+            }
         }
     }
 }
