@@ -48,7 +48,7 @@ namespace RailwayStation
 
         private List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
-        private Train _train ;
+        private List<Train> _trains = new List<Train>();
 
         public int Tickets { get; private set; }
 
@@ -79,9 +79,7 @@ namespace RailwayStation
                         SellTickets();
                         break;
 
-                    case CreateCarriage:
-                        _train.FormTrain(Tickets);
-                        break;
+                    
 
                     case ExitProgramMenu:
                         isWorckProgram = false;
@@ -167,7 +165,8 @@ namespace RailwayStation
             switch (inputUserCommand)
             {
             case CreateCarriage:
-                    _train.FormTrain(Tickets);
+                    Train train = new Train(Tickets);
+                    _trains.Add(train);
                     break;
             }
         }
@@ -175,18 +174,24 @@ namespace RailwayStation
         private void ShowTravelDirection()
         {
             
-
             if (_travelDirections != null)
             {
-              
+               
+
                     
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
-
-                    Console.WriteLine("Созданные направления");
-                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}  ");  
                     
-                }            
+                
+                    Console.WriteLine("Созданные направления");
+                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets} {travelDirection.NumberCarriage} ");  
+                    
+                }
+
+                foreach (Train train in _trains)
+                {
+                    Console.WriteLine($"Колличество вагонов в поезде {train.NumberCarriages}");
+                }
 
             }
             else
@@ -199,7 +204,7 @@ namespace RailwayStation
         {
             Console.WriteLine("Статус станции : ");
             ShowTravelDirection();
-            _train.ShowTrain(Tickets);
+            
         }
     }
 }

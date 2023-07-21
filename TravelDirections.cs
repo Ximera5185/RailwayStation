@@ -5,17 +5,20 @@ namespace RailwayStation
 {
     internal class TravelDirections
     {
-        Train train;
         public string StartTravelDirection { get; private set; }
         public string EndTravelDirection { get; private set; }
         public int Distance { get; private set; }
-        public int Tickets { get;  set; }
+        public int Tickets { get; set; }
+
+        public int NumberCarriage{ get; set; }
 
         public TravelDirections(string startTravelDirectiun, string endTravelDirection) 
         {
             StartTravelDirection = startTravelDirectiun;
 
-            EndTravelDirection = endTravelDirection;    
+            EndTravelDirection = endTravelDirection;
+
+       
         }
 
         public void CalculateDistance( Dictionary<int,string> coordinates) 

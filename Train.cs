@@ -9,27 +9,20 @@ namespace RailwayStation
 {
     internal class Train
     {
-        TravelDirections travelDirections;
-        public readonly List< RailwayCarriage> _carriages = new List<RailwayCarriage>();
-
+    public Train( int ticcets) 
+    {
+            FormTrain(ticcets);
+    }  
         public int NumberSeatTrain { get; private set; }
         private int _freeSpace;
         public int NumberCarriages { get; set; }
 
-        public void ShowTrain(int tickets) 
-        {
-            _freeSpace = NumberSeatTrain - tickets;
-
-            Console.WriteLine($"Вагонов создано {_carriages.Count}\n" +
-            $"Свего поссажирских мест в поезде {NumberSeatTrain}\n" +
-            $"Мест занято {tickets}\n" +
-            $"Свободных мест в поезде {_freeSpace}");
-
-        }
+       
 
         public void FormTrain(int tickets)
         {
-            int numberCarriages = 0;
+
+        NumberCarriages = 0;
 
             if (tickets <= 0) 
             {
@@ -45,6 +38,7 @@ namespace RailwayStation
                    CreateCarriage();
                 }
             }
+
         }
 
         public void CreateCarriage() 
@@ -53,7 +47,9 @@ namespace RailwayStation
 
             NumberSeatTrain += railwayCarriage.NumberOfPassengerSeats;
 
-            _carriages.Add(railwayCarriage);
+            NumberCarriages++;
+
+           
         }
 
     }
