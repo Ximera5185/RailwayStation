@@ -48,7 +48,7 @@ namespace RailwayStation
 
         private List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
-        private Train _train = new Train();
+        private Train _train ;
 
         public int Tickets { get; private set; }
 
@@ -136,7 +136,6 @@ namespace RailwayStation
                     isWorckProgram = false;
                     break;
             }
-
         }
 
         private void SellTickets()
@@ -175,18 +174,20 @@ namespace RailwayStation
 
         private void ShowTravelDirection()
         {
+            
+
             if (_travelDirections != null)
             {
+              
+                    
                 foreach (TravelDirections travelDirection in _travelDirections)
                 {
-                    Console.WriteLine("Созданные направления");
-                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}  ");
 
-                    foreach (KeyValuePair<int, RailwayCarriage> train in _train._carriages)
-                    {
-                        Console.WriteLine($"Вагонов в поезде {train.Key}");
-                    }
-                }
+                    Console.WriteLine("Созданные направления");
+                    Console.WriteLine($"Напровление : {travelDirection.StartTravelDirection} - {travelDirection.EndTravelDirection} : Растояне {travelDirection.Distance} км Билетов продано {travelDirection.Tickets}  ");  
+                    
+                }            
+
             }
             else
             {

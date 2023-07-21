@@ -9,10 +9,12 @@ namespace RailwayStation
 {
     internal class Train
     {
-        public readonly Dictionary<int, RailwayCarriage> _carriages = new Dictionary<int , RailwayCarriage>();
+        TravelDirections travelDirections;
+        public readonly List< RailwayCarriage> _carriages = new List<RailwayCarriage>();
 
         public int NumberSeatTrain { get; private set; }
         private int _freeSpace;
+        public int NumberCarriages { get; set; }
 
         public void ShowTrain(int tickets) 
         {
@@ -27,6 +29,8 @@ namespace RailwayStation
 
         public void FormTrain(int tickets)
         {
+            int numberCarriages = 0;
+
             if (tickets <= 0) 
             {
                 Console.Clear();
@@ -35,29 +39,22 @@ namespace RailwayStation
             }
             else 
             {
+                     
                 while (tickets > NumberSeatTrain)
                 {
-                     int number = 0;
-                    CreateCarriage(number);
-                 number++;
+                   CreateCarriage();
                 }
             }
         }
 
-        public void CreateCarriage(int number) 
+        public void CreateCarriage() 
         {
-
             RailwayCarriage railwayCarriage = new RailwayCarriage();
-
 
             NumberSeatTrain += railwayCarriage.NumberOfPassengerSeats;
 
-            _carriages.Add(number,railwayCarriage);
+            _carriages.Add(railwayCarriage);
         }
 
-        public void ShowNumberCarriage() 
-        {
-            
-        }
     }
 }
