@@ -16,8 +16,21 @@ namespace RailwayStation
             EnclosedPlaces = ticcets;
         }
         public int NumberSeatTrain { get; private set; }
+
         public int NumberCarriages { get; private set; }
+
         public int EnclosedPlaces { get; private set; }
+
+        private void CreateCarriage()
+        {
+            RailwayCarriage railwayCarriage = new RailwayCarriage();
+
+            NumberSeatTrain += railwayCarriage.NumberOfPassengerSeats;
+
+            NumberCarriages++;
+
+        }
+
         private void FormTrain(int tickets)
         {
 
@@ -39,16 +52,5 @@ namespace RailwayStation
             }
 
         }
-
-        public void CreateCarriage()
-        {
-            RailwayCarriage railwayCarriage = new RailwayCarriage();
-
-            NumberSeatTrain += railwayCarriage.NumberOfPassengerSeats;
-
-            NumberCarriages++;
-
-        }
-
     }
 }

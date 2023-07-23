@@ -37,9 +37,9 @@ namespace RailwayStation
             {"Грозный",1000}
         };
 
-        private List<TravelDirections> _travelDirections = new List<TravelDirections>();
+        private readonly List<TravelDirections> _travelDirections = new List<TravelDirections>();
 
-        private List<Train> _trains = new List<Train>();
+        private readonly List<Train> _trains = new List<Train>();
 
         public void Work()
         {
@@ -82,26 +82,24 @@ namespace RailwayStation
 
             ShowcCities(_startTravelDirections);
 
-            inputUserStartPoint = Convert.ToInt32(Console.ReadLine());
+            inputUserStartPoint = InputNumber();
 
             Console.WriteLine("Введите номер конечной точки");
 
             ShowcCities(_endTravelDirections);
 
-            inputUserEndPoint = Convert.ToInt32(Console.ReadLine());
+            inputUserEndPoint = InputNumber();
 
             if (_startTravelDirections.ContainsKey(inputUserStartPoint) && _endTravelDirections.ContainsKey(inputUserEndPoint))
             {
                 TravelDirections travelDirection = new TravelDirections(_startTravelDirections [inputUserStartPoint], _endTravelDirections [inputUserEndPoint], _coordinates);
 
                 _travelDirections.Add(travelDirection);
-                
+
                 SellTickets();
             }
 
-
             Console.Clear();
-
         }
 
         private void SellTickets()
@@ -112,7 +110,7 @@ namespace RailwayStation
             int maxValue = 99;
             int tickets;
 
-                tickets = random.Next(minValue, maxValue);
+            tickets = random.Next(minValue, maxValue);
 
             Console.Clear();
             Console.WriteLine("Билеты проданы");
@@ -127,12 +125,11 @@ namespace RailwayStation
 
             if (_travelDirections != null)
             {
-                for (int i = 0; i < _travelDirections.Count; i++)
+                for (int index = 0; index < _travelDirections.Count; index++)
                 {
-                    Console.WriteLine($"Направление {_travelDirections [i].StartTravelDirection} - {_travelDirections [i].EndTravelDirection} " +
-                    $" Растояние  {_travelDirections [i].Distance} Билетов {_trains [i].EnclosedPlaces} Вогонов создано {_trains [i].NumberCarriages}");
+                    Console.WriteLine($"Направление {_travelDirections [index].StartTravelDirection} - {_travelDirections [index].EndTravelDirection} " +
+                    $" Растояние  {_travelDirections [index].Distance} Билетов {_trains [index].EnclosedPlaces} Вогонов создано {_trains [index].NumberCarriages}");
                 }
-
             }
             else
             {
@@ -146,6 +143,28 @@ namespace RailwayStation
             {
                 Console.WriteLine($"{city.Key} {city.Value}");
             }
+        }
+
+        private int InputNumber()
+        {
+            int inputNumber = 0;
+
+            bool isValidInput = false;
+
+            while (!isValidInput)
+            {
+                Console.Write("Введите целое число: ");
+                string input = Console.ReadLine();
+
+                isValidInput = int.TryParse(input, out inputNumber);
+
+                if (!isValidInput)
+                {
+                    Console.WriteLine("Введено некорректное значение. Попробуйте снова.");
+                }
+            }
+
+            return inputNumber;
         }
     }
 }
