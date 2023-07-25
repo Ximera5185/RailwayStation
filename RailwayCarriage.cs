@@ -17,6 +17,7 @@ namespace RailwayStation
         {
             NumberOfPassengerSeats = _random.Next(_minValueNumberSeats, _maxValueNumberSeats);
         }
+
         public int NumberOfPassengerSeats { get; private set; }
     }
 }

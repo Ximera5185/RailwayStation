@@ -15,6 +15,7 @@ namespace RailwayStation
 
             EnclosedPlaces = ticcets;
         }
+
         public int NumberSeatTrain { get; private set; }
 
         public int NumberCarriages { get; private set; }
@@ -33,7 +34,6 @@ namespace RailwayStation
 
         private void FormTrain(int tickets)
         {
-
             NumberCarriages = 0;
 
             if (tickets <= 0)
@@ -44,13 +44,11 @@ namespace RailwayStation
             }
             else
             {
-
                 while (tickets > NumberSeatTrain)
                 {
                     CreateCarriage();
                 }
             }
-
         }
     }
 }

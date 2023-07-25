@@ -122,7 +122,6 @@ namespace RailwayStation
 
         private void ShowTravelDirection()
         {
-
             if (_travelDirections != null)
             {
                 for (int index = 0; index < _travelDirections.Count; index++)
@@ -151,14 +150,14 @@ namespace RailwayStation
 
             bool isValidInput = false;
 
-            while (!isValidInput)
+            while (isValidInput == false)
             {
                 Console.Write("Введите целое число: ");
                 string input = Console.ReadLine();
 
                 isValidInput = int.TryParse(input, out inputNumber);
 
-                if (!isValidInput)
+                if (isValidInput == false)
                 {
                     Console.WriteLine("Введено некорректное значение. Попробуйте снова.");
                 }

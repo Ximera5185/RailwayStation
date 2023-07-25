@@ -25,6 +25,5 @@ namespace RailwayStation
 
             Distance = finalCoordinate - startCoordinate;
         }
-
     }
 }
