@@ -104,8 +104,6 @@ namespace RailwayStation
 
         private void SellTickets()
         {
-            Random random = new Random();
-
             int minValue = 9;
             int maxValue = 99;
             int tickets;
@@ -153,6 +151,7 @@ namespace RailwayStation
             while (isValidInput == false)
             {
                 Console.Write("Введите целое число: ");
+
                 string input = Console.ReadLine();
 
                 isValidInput = int.TryParse(input, out inputNumber);
