@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RailwayStation
 {
@@ -15,7 +11,7 @@ namespace RailwayStation
 
         public RailwayCarriage()
         {
-            NumberOfPassengerSeats = _random.Next(_minValueNumberSeats, _maxValueNumberSeats);
+            NumberOfPassengerSeats = UserUtils.GenerateRandomNumber(_minValueNumberSeats,_minValueNumberSeats);
         }
 
         public int NumberOfPassengerSeats { get; private set; }

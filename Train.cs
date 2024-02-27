@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RailwayStation
 {
     internal class Train
     {
-        public Train(int ticcets)
+        public Train(int tickets)
         {
-            FormTrain(ticcets);
+            FormTrain(tickets);
 
-            EnclosedPlaces = ticcets;
+            EnclosedPlaces = tickets;
         }
 
         public int NumberSeatTrain { get; private set; }

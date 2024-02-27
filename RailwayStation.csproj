@@ -49,6 +49,7 @@
     <Compile Include="RailwayStation.cs" />
     <Compile Include="Train.cs" />
     <Compile Include="TravelDirections.cs" />
+    <Compile Include="UserUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

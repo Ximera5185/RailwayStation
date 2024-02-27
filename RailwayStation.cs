@@ -46,9 +46,9 @@ namespace RailwayStation
             const string CreateTravelDirectionMenu = "1";
             const string ExitProgramMenu = "5";
 
-            bool isWorckProgram = true;
+            bool isWorkProgram = true;
 
-            while (isWorckProgram)
+            while (isWorkProgram)
             {
                 Console.Clear();
                 ShowTravelDirection();
@@ -65,7 +65,7 @@ namespace RailwayStation
                         break;
 
                     case ExitProgramMenu:
-                        isWorckProgram = false;
+                        isWorkProgram = false;
                         break;
                 }
             }
@@ -80,13 +80,13 @@ namespace RailwayStation
 
             Console.WriteLine("Введите номер стартовой точки");
 
-            ShowcCities(_startTravelDirections);
+            ShowCities(_startTravelDirections);
 
             inputUserStartPoint = InputNumber();
 
             Console.WriteLine("Введите номер конечной точки");
 
-            ShowcCities(_endTravelDirections);
+            ShowCities(_endTravelDirections);
 
             inputUserEndPoint = InputNumber();
 
@@ -110,7 +110,7 @@ namespace RailwayStation
             int maxValue = 99;
             int tickets;
 
-            tickets = random.Next(minValue, maxValue);
+            tickets = UserUtils.GenerateRandomNumber(minValue,maxValue);
 
             Console.Clear();
             Console.WriteLine("Билеты проданы");
@@ -136,7 +136,7 @@ namespace RailwayStation
             }
         }
 
-        private void ShowcCities(Dictionary<int, string> cities)
+        private void ShowCities(Dictionary<int, string> cities)
         {
             foreach (KeyValuePair<int, string> city in cities)
             {
